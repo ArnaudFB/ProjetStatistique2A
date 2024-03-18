@@ -36,3 +36,7 @@ eig.val_PCA_config_0 <- get_eigenvalue(res.PCA_config_0)
 fviz_eig(res.PCA_config_0)
 fviz_pca_ind(res.PCA_config_0)
 fviz_pca_var(res.PCA_config_0, select.var = list(name = c("bore", "burn.up", "P_rel", "T_entree")))
+print(res.PCA_config_0)
+PCA_call <- res.PCA_config_0$call
+summary(PCA_call)
+PCA_call$ecart.type
