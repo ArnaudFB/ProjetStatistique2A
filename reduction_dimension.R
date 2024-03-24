@@ -3,6 +3,7 @@
 library(dplyr)
 library("FactoMineR")
 library("factoextra")
+library(corrplot)
 
 # Clear environnement
 
@@ -34,5 +35,10 @@ nappe_data_config_0_non_nulles.active <- nappe_data_config_0_non_nulles[,5:34654
 res.PCA_config_0 <- PCA(nappe_data_config_0_non_nulles, scale.unit = TRUE, ncp = 2, graph = FALSE)
 eig.val_PCA_config_0 <- get_eigenvalue(res.PCA_config_0)
 fviz_eig(res.PCA_config_0)
-fviz_pca_ind(res.PCA_config_0)
-fviz_pca_var(res.PCA_config_0, select.var = list(name = c("bore", "burn.up", "P_rel", "T_entree")))
+fviz_pca_ind(res.PCA_config_0, col.ind="cos2", geom = "point",
+             gradient.cols = c("white", "#2E9FDF", "#FC4E07" ))
+fviz_pca_var(res.PCA_config_0, col.var = "contrib", 
+             gradient.cols = c("white", "blue", "red"),
+             geom = "point",
+             ggtheme = theme_minimal())
+corrplot(var$cos2, is.corr=FALSE)
